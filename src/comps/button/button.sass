@@ -1,0 +1,72 @@
+@use '../../style/theme'
+
+@mixin colorTheme($color, $bgColor, $borderColor)
+  @if $color
+    color: $color
+  @if $bgColor
+    background-color: $bgColor
+  @if $borderColor
+    border: 1px solid $borderColor
+
+.button
+  display: inline-block
+  padding: 0.6em 1.2em
+  cursor: pointer
+  border: 0
+  border-radius: 0.75em
+  font-weight: 700
+  font-family: Helvetica, Arial, sans-serif
+  background-color: theme.$white
+  transition: 0.2s
+
+  &--primary
+    @include colorTheme(theme.$white, theme.$deep-purple-800, theme.$deep-purple-800)
+
+    &:hover
+      @include colorTheme(theme.$deep-purple-800, theme.$deep-purple-50, theme.$deep-purple-800)
+
+
+  &--secondary
+    @include colorTheme(theme.$deep-purple-800, theme.$deep-purple-50, theme.$deep-purple-800)
+
+    &:hover
+      @include colorTheme(theme.$white, theme.$deep-purple-800, theme.$deep-purple-800)
+  
+
+  &--tertiary
+    @include colorTheme(theme.$deep-purple-800, null, transparent)
+
+    &:hover
+      @include colorTheme(theme.$deep-purple-800, null, theme.$deep-purple-800)
+
+
+  &--no-style
+    padding: 0
+    border-radius: 0
+    font-weight: 500
+    @include colorTheme(theme.$black, theme.$white, theme.$white)
+
+    &:hover
+      @include colorTheme(theme.$black, theme.$white, theme.$white)
+
+
+  &--gray
+    filter: grayscale(100%)
+
+
+  &:disabled
+    pointer-events: none
+    cursor: not-allowed
+    opacity: 0.6
+
+
+  &--small
+    font-size: 0.875rem
+
+
+  &--medium
+    font-size: 1rem
+
+
+  &--large
+    font-size: 1.2rem
