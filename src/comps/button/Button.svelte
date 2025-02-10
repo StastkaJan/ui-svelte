@@ -1,41 +1,28 @@
 <script lang="ts">
+	import type { ButtonProps } from './types.js';
   import './button.sass';
-
-  type Props = {
-    /** Button class */
-    buttonClass: 'primary' | 'secondary' | 'tertiary';
-    /** Button contents */
-    label: string;
-    /** The onclick event handler */
-    onClick: () => void;
-    /** Button style */
-    buttonStyle?: 'no-style' | 'gray';
-    /** Size of the button */
-    size?: 'small' | 'medium' | 'large';
-    /** Disabled state */
-    disabled?: boolean;
-  }
   
   const {
     buttonClass,
+    children,
     buttonStyle,
     size = 'medium',
-    label,
-    disabled = false,
-    onClick,
-  }: Props = $props();
+    ...props
+  }: ButtonProps = $props();
 </script>
 
 <button
-  type="button"
   class={[
     'button',
     `button--${size}`,
     `button--${buttonClass}`,
     `button--${buttonStyle}`,
   ].join(' ')}
-  onclick={onClick}
-  disabled={disabled}
+  {...props}
 >
-  {label}
+  {#if typeof children == 'string'}
+    {children}
+  {:else}
+    {@render children?.()}
+  {/if}
 </button>

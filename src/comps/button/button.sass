@@ -1,4 +1,5 @@
 @use '../../style/theme'
+@use '../../style/basic'
 
 @mixin colorTheme($color, $bgColor, $borderColor)
   @if $color
@@ -15,7 +16,7 @@
   border: 0
   border-radius: 0.75em
   font-weight: 700
-  font-family: Helvetica, Arial, sans-serif
+  font-family: basic.$font-family
   background-color: theme.$white
   transition: 0.2s
 
@@ -40,14 +41,26 @@
       @include colorTheme(theme.$deep-purple-800, null, theme.$deep-purple-800)
 
 
-  &--no-style
-    padding: 0
-    border-radius: 0
+  &--no-style,
+  &--icon
     font-weight: 500
     @include colorTheme(theme.$black, theme.$white, theme.$white)
 
+
+  &--no-style
+    padding: 0
+    border-radius: 0
+
     &:hover
       @include colorTheme(theme.$black, theme.$white, theme.$white)
+
+
+  &--icon
+    padding: .8rem
+    border-radius: 50%
+
+    &:hover
+      @include colorTheme(theme.$black, theme.$gray-200, theme.$white)
 
 
   &--gray
